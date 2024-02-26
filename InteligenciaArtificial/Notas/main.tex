@@ -1,41 +1,45 @@
 \documentclass{config-wokSH}
 \usepackage[spanish]{babel} % Idioma
-\input{confi/packet.tex}
+\input{packet}
 
-
-\usepackage[backend=biber, style=alphabetic, sorting=ynt]{biblatex}
-\bibliography{bibliografia.bib}
+\usepackage[backend=biber,style=ieee]{biblatex}
+\addbibresource{bibliografia.bib}
 \nocite{*} % Añade todas las referencias de bib sin cita
-
-
 
 % -------------------------------------------------------/
 % ------------------------------------------------------/
 \begin{document}
 
-\pagestyle{fancy}
+\pagecolor{AzulRey}
+\color{white}
+
+\pagestyle{body}
 \thispagestyle{firstpage}
-% -----------------|
-% Portada Titulo   |
-\maketitle %       |
-% -----------------|
+%% -----------------|
+%% ----------------|
+\input{portada}    %
+\tableofcontents
+%% ----------------|
+%% -----------------|
 
-% ------------------------------|
-\input{unidades/unidad01.tex} % |
-% ------------------------------|
-
-
-% --------------------|
-% Referencias         |
-% pdflatex main.tex   |
-% biber main          |
-% pdflatex main.tex   |
-\newpage %            |
-\printbibliography %  |
-% --------------------|
+%% --------------------------------------------|
+%% ---------- Modulos del Temario -------------|
+\newpage
+\input{modulos/modulo01}
+\input{modulos/modulo02}
+%% ---------- Modulos del Temario -------------|
+%% --------------------------------------------|
 
 
-  
+% ----------------------|
+% Referencias           |
+% pdflatex main.tex     |
+% biber main            |
+% pdflatex main.tex     |
+\newpage %              |
+\thispagestyle{refs}
+\printbibliography %    |
+% ----------------------|
 
 \end{document}
 % -----------------------------------------------------\
