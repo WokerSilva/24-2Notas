@@ -1,0 +1,146 @@
+% ------------------------------------------------------------------------------\
+% -----------------------------------------------------------------------------\
+% ----------------------------------------------------------------------------\
+\section{Problema}
+% ------------------------------------------------------------------------------\
+% -----------------------------------------------------------------------------\
+% ----------------------------------------------------------------------------\
+
+10.3 COLOREACIÓN DE GRÁFICOS
+
+Uno de los problemas clásicos de la teoría de grafos es el de colorear los vértices de un gráfico de 
+tal manera que no se asigne el mismo color a dos vértices adyacentes (es decir, conectados por una arista). 
+El número mínimo de colores necesarios para colorear G se llama número cromático, $\gamma$(G), de G.
+
+En esta sección, mostraremos que este problema es NPC. El problema sigue siendo NPC incluso si todo lo que 
+preguntamos es si $\gamma$(G) $\leq$ 3. Además, incluso si restringimos la pregunta al gráfico plano, el problema 
+sigue siendo NPC. Incluso si restringimos el problema a una clase de gráficos planos con realización plana 
+de buen comportamiento, el problema de si $\gamma$(G) $\leq$ 3 sigue siendo NPC. Uno de tales La definición para 
+una realización con buen comportamiento es que todos los bordes son líneas rectas, ningún ángulo es inferior 
+a 10 y las longitudes de los bordes están entre dos dados.
+límites.
+
+Primero consideramos el problema de las 3 colores, (3C), que se define de la siguiente manera:
+
+Entrada: Un gráfico G(V, E).
+
+Pregunta: ¿Se puede asignar un color a cada vértice, de modo que solo se utilicen tres colores y no se asigne 
+el mismo color a dos vértices adyacentes? (En resumen: ¿es$\gamma$(G) $\leq$ 3?)
+
+Teorema 10.6: 3C es NPC.
+
+
+Prueba: Demostramos que 3SAT $ \alpha$ 3C. (La demostración de este teorema, y el siguiente, sigue los 
+trabajos de Stockmeyer [2] y Garey, Johnson y Stockmeyer [3].) Sea el conjunto de literales, de la entrada I a 
+3SAT, $\{x_{1 }, x_ {2}, . . . , X_{n}, \bar{X_{1}}, \bar{X_{2}}, ..., \bar{X_{n}} \}$ y las cláusulas 
+sean $C_{1}$, $C_{2}$, ..., $C_{m}$.
+
+El gráfico G(V. E), que es la entrada f(I) a 3C, se define de la siguiente manera:
+
+$ V = \{ a,b \} \cup \{ x_{i}, \bar{x_{i}} \hspace{3mm} | \hspace{3mm} 1 \leq i \leq n \}  \cup \{ w_{ij} \hspace{3mm} | \hspace{3mm} 1 \leq i \leq 6 \text{y} 1 \leq j \leq m \}$
+
+$ E = \{a - b\} \cup \{a - x_{i}, a - \bar{x_{i}}, x_{i} - \bar{x_{i}} \hspace{3mm} | \hspace{3mm} 1 \leq i \leq i \} \cup$\\
+\textcolor{AzulRey}{.} \hspace{12mm} $\{w_{1j}, - w_{2j}, w_{1j} - w_{4j}, w_{2j} - w_{4j}, w_{4j} - w_{5j}, $ \\
+\textcolor{AzulRey}{.} \hspace{12mm} $ w_{3j} - w_{5j}, w_{3j} - w_{6j}, w_{5j} - w_{6j}, w_{6j} - b \hspace{3mm} | \hspace{3mm} 1 \leq j \leq m \}  \hspace{3mm} \cup $ \\ 
+\textcolor{AzulRey}{.} \hspace{12mm} $\{ \xi_{1j} -  w_{1j},  \xi_{2j} - w_{2j}, \xi_{3j} -  w_{3j}  \hspace{3mm} | \hspace{3mm} 1 \leq j \leq m  \hspace{4mm} \text{and} $ \\ 
+\textcolor{AzulRey}{.} \hspace{12mm} $C_{j} = \{ \xi_{1j},  \xi_{2j},  \xi_{3j}, \}\} $\\ 
+
+
+La estructura de las dos últimas partes de la definición de E, para cada j, se muestra en la Figura 10.2. El significado 
+de esta estructura es el siguiente: Supongamos que cada uno de los vértices $\xi_{1j}, \xi_{2j}$ y $\xi_{3j}$ 
+está coloreado 0 o 1 (asumimos que los tres colores son 0, 1 y 2) e ignoramos por el momento el vértice b. 
+Afirmamos que $w_{6j}$, puede colorearse 1 o 2 si y solo si no los tres vértices $\xi_{1j}, \xi_{2j}$ y $\xi_{3j}$
+están coloreados 0. Primero, es fácil ver que si $\xi_{1j}, \xi_{2j}$ y $\xi_{3j}$ están coloreados 0, 
+entonces $w_{4j}$ también debe ser coloreado 0, y por lo tanto debemos ser coloreados 0. Pero, como el lector 
+puede comprobar por sí mismo, si al menos uno de $\xi_{1j}, \xi_{2j}, \xi_{3j}$, está coloreado 1 entonces 
+$w_{6j}$ se puede colorear 1. La estructura de las dos primeras partes de la definición de E se muestra en la 
+figura 10.3. Claramente, si a tiene el color 2, entonces todos los vértices literales deben tener el color 0 y 1, 
+uno de estos colores se usa para $w_{i}$ y el otro para $\bar{w_{i}}$. Supongamos que \textit{I} es satisfactoria 
+mediante alguna asignación de valor de verdad a los literales. Para ver que \textit{f(I)} tiene 3 colores, asigne a 
+a el color 2. Asigne al literal $\xi$ el color 1 si es 'verdadero' y 0 si es 'falso'. Ahora, dado que a ningún 
+triple $\xi_{1j}, \xi_{2j}, \xi_{3j}$ se le asignan todos ceros, podemos colorear $w_{1i}, w_{2j}. . . w_{6j}$ de 
+tal manera que $w_{6j}$ tenga el color 1, para todo $j = 1, 2, ..., m$. Por lo tanto, b es coloreable 0 y la 
+coloración 3 de G está completa. Por el contrario, si G tiene 3 colores, llame al color de a 2 y al color de b 0. 
+Claramente, todos los vértices literales están coloreados 0 y 1, y $w_{6j}$ no puede ser coloreado 0. Por lo tanto, 
+para cada triple $\xi_{1j}, \xi_{2j}, \xi_{3j}$, no los tres están coloreados 0. Ahora, si asignamos un literal 
+'verdadero' si y sólo si su vértice correspondiente está coloreado 1, la asignación satisface todas las cláusulas. \\ 
+
+
+Antes de abordar el problema de la colorabilidad tridimensional de los gráficos planos en general, consideremos el 
+gráfico plano D con forma de diamante de la Figura 10.4. Supongamos que lo coloreamos con los tres colores 0, 1 y 2. 
+Si $u_{0}$ tiene el color 0, el circuito $u_{1} - u_{2} - u_{3} - u_{4} - u_ {1}$, tiene el color 1 y 2, 
+alternativamente. Para definición, suponga que $ u_ {1} $ y $ u_ {3} $ están coloreados 1 y $u_ {2}$ y $ u_ {4}$ 
+están coloreados 2. Ahora, hay dos colores posibles para nosotros; es decir, i.e 0 o 2. Si $u_ {5}$ tiene el color 0,
+entonces $v_{1}$, tiene el color 2, $v_{4}$ tiene el color 1, $v_{6}$ tiene el color 0, $v_{2}$ tiene el color 2,
+$u_{7}$ tiene el color 0, $v_{3}$ tiene el color 1 y $u_{8}$ tiene el color 0. Lo importante es el hecho es que 
+$v_{1}$ y $v_{2}$ tienen el mismo color (2) y $v_{3}$ y $v_{4}$ tienen el mismo color (1). Si $u_{5}$ tiene el color 2, 
+entonces $v_{1}$, tiene el color 0, $u_{8}$ tiene el color 1, $v_{3}$ tiene el color 0, $v_{7}$ tiene el color 2, 
+$v_{2}$ tiene el color 0, $u_{6}$ tiene el color 1 y $v_{4}$ tiene el color 0; es decir, los cuatro vértices, 
+$v_{1}, v_{2}, v_{3}$ y $v_{4}$ tienen colores idénticos. Concluimos que en cada coloración triple de D $v_{1}$ y $v_{2}$
+deben tener el mismo color, $v_{3}$ y $v_{4}$ deben tener el mismo color, pero el color de $v_{1}$ y $v_{3}$ pueden ser 
+o no el mismo. Así, D, efectivamente realiza un cruce de la coloración de $v_{1}$ a $v_{2}$, de $v_{3}$ a $v_{4}$ sin ninguna restricción en cuanto a
+Se introduce la igualdad o desigualdad del color de $v_{1}$ y $v_{3}$.
+
+El problema de las 3 colores de gráficos planos (3CP) se define de la siguiente manera:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+% ------------------------------------------------------------------------------\
+% -----------------------------------------------------------------------------\
+\subsection{Forma Canónica}
+% ------------------------------------------------------------------------------\
+% -----------------------------------------------------------------------------\
+
+
+% ------------------------------------------------------------------------------\
+% -----------------------------------------------------------------------------\
+\subsection{Demostración}
+% ------------------------------------------------------------------------------\
+% -----------------------------------------------------------------------------\
+
+
+% ------------------------------------------------------------------------------\
+% -----------------------------------------------------------------------------\
+\subsection{Demostrar transformación}
+% ------------------------------------------------------------------------------\
+% -----------------------------------------------------------------------------\
+
+
+% ------------------------------------------------------------------------------\
+% -----------------------------------------------------------------------------\
+\subsection{Ejemplificar}
+% ------------------------------------------------------------------------------\
+% -----------------------------------------------------------------------------\
+
+
+% ------------------------------------------------------------------------------\
+% -----------------------------------------------------------------------------\
+\subsection{Técnicas de demostración}
+% ------------------------------------------------------------------------------\
+% -----------------------------------------------------------------------------\
+
+
+% ------------------------------------------------------------------------------\
+% -----------------------------------------------------------------------------\
+\subsection{Aplicación}
+% ------------------------------------------------------------------------------\
+% -----------------------------------------------------------------------------\
