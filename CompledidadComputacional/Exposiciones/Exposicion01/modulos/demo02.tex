@@ -1,0 +1,47 @@
+\section{3 colores son NP completos.}
+
+Prueba: El problema de la coloración 3 pertenece a NP ya que podemos adivinar una coloración 3 y 
+comprobar que es una coloración válida fácilmente en tiempo polinomial. Reducimos 3SAT al 
+problema de los 3 colores. Esta es una prueba más complicada por dos razones. Primero, los dos
+problemas tratan con objetos diferentes (expresiones booleanas versus gráficas). En segundo lugar, 
+no podemos simplemente reemplazar un objeto (por ejemplo, vértice, arista) por otro (por 
+ejemplo, cláusula); Tenemos que ocuparnos de toda la estructura. La idea es utilizar bloques de 
+construcción y luego unirlos. Sea $E$ una instancia arbitraria de 3SAT. Tenemos que construir un 
+gráfico $G$ tal que $E$ sea satisfactorio si y solo si G puede ser de 3 colores. Primero, 
+construimos el triángulo principal M.\\ 
+
+Como $M$ es un triángulo, requiere al menos tres colores. Etiquetamos $M$ con los "colores" $T$ 
+(para verdadero), F (para falso) y A (vea el triángulo inferior en la figura 11.4). Estos colores son
+usado sólo para la prueba; no son parte del gráfico. Posteriormente asociaremos estos colores con 
+la asignación de valores de verdad a las variables de $E$. Para cada variable $x$, tenemos construye 
+otro triángulo $M$, cuyos vértices están etiquetados como x, $\bar{x}$ y $A$, donde $A$ es el mismo 
+vértice en $M$. Entonces, si hay $k$ variables, tendremos $k + 1$ triángulos, todos compartiendo un 
+vértice común $A$ (ver figura 11.4). La idea es que, si $x$ está coloreado con el color $T$, entonces 
+$\bar{x}$ debe colorearse con $F$ (ya que ambos están conectados a $A$), y viceversa. Esto es 
+consistente con el significado de $\bar{x}$. \\ 
+
+Ahora tenemos que imponer la condición de que al menos una variable en cada cláusula tenga el valor 1. 
+Lo hacemos con la siguiente construcción. Supongamos que la cláusula es $(x + y + z)$. Introducimos 
+seis nuevos vértices y los conectamos a los vértices existentes, como se muestra en la figura 11.5. 
+(Las etiquetas son consistentes, de modo que solo hay un vértice en todo el gráfico etiquetado como 
+$T$, y un vértice para cada $x, y,$ o $z$.) Llamemos a los tres nuevos vértices conectados a $T$ y 
+$ x, y$ o $z$ los vértices externos (están etiquetados con O en la figura) y los tres nuevos vértices 
+en el triángulo, los vértices internos (etiquetados con / en la figura). Afirmamos que esta 
+construcción garantiza que, si no se utilizan más de 3 colores, entonces al menos uno de $x$, $y$ o $z$ 
+debe tener el color $T$. Ninguno de ellos puede colorearse como $A$, ya que todos están conectados a $A$ 
+(ver Fig. 11.4). Si todos están coloreados $F$, entonces los tres nuevos vértices conectados a ellos 
+deben tener el color A, ¡pero entonces el triángulo interior no puede colorearse con tres colores! La 
+gráfica completa correspondiente a la expresión $(\bar{x} + y + \bar{z}) \cdot (\bar{x} + \bar{y} + z)$\\ 
+
+Ahora podemos completar la prueba. Tenemos que demostrar dos lados: (1) si $E$ es satisfactoria, entonces 
+$G$ puede colorearse con tres colores; y (2) si $G$ se puede colorear con tres colores, entonces $E$ es 
+satisfactorio. Si $E$ es satisfacible entonces hay una asignación de verdad satisfacible. Coloreamos los 
+vértices asociados con las variables de acuerdo con esta asignación de verdad ($T$ si $x =1$, y F en 
+caso contrario). $M$ está coloreado con $T$, $F$ y A como se indica. Cada cláusula debe tener al menos una 
+variable cuyo valor sea 1. Por lo tanto, podemos colorear el vértice exterior correspondiente con $F$, el 
+resto de los vértices exteriores con $A$ y el triángulo interior en consecuencia. Por tanto, $G$ se puede 
+colorear con tres colores. Por el contrario, si $G$ se puede colorear con tres colores, nombramos los 
+colores según la coloración de $M$ (que debe estar coloreado con tres colores). Debido a los triángulos 
+de la figura 11.4, los colores de las variables corresponden a una asignación de verdad consistente. 
+La construcción de la figura 11.6 garantiza que al menos una variable en cada cláusula esté coloreada 
+con $T$. Finalmente, $G$ puede construirse claramente en tiempo polinomial, lo que completa la demostración.
