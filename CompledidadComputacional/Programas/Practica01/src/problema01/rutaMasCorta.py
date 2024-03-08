@@ -10,8 +10,7 @@ def leer_grafica_desde_archivo(nombre_archivo):
             grafica[int(vertice)] = {}
         for linea in lineas[1:]:
             v1, v2 = map(int, linea.strip().split(','))
-            if v1 in grafica and v2 in grafica:
-                # Para una gráfica no dirigida, se pueden eliminar estas comprobaciones
+            if v1 in grafica and v2 in grafica:                
                 grafica[v1][v2] = 1
                 grafica[v2][v1] = 1
     return grafica
@@ -21,6 +20,7 @@ def rutaMasCorta(grafica, inicio, final, k):
     distancias = inicializarDistancias(grafica, inicio)
     colaPrioridad = inicializarColaPrioridad(inicio)
     
+    print("Fase Adivinadora:")
     # Fase de no determinismo: selección aleatoria de vértices adyacentes
     while not colaPrioridad.empty():
         verticeActual = colaPrioridad.get()
@@ -28,12 +28,14 @@ def rutaMasCorta(grafica, inicio, final, k):
         random.shuffle(vecinos_aleatorios)
         for vecino in vecinos_aleatorios:
             actualizarDistancia(distancias, verticeActual, vecino, colaPrioridad)
+            print("Explorando vértice:", vecino)
     
     # Paso 3: Verificación
+    print("\nFase Verificadora:")
     if distancias[final] < k:
-        return "Sí, hay una ruta de peso menor que k entre inicio y final"
+        print("Sí, hay una ruta de peso menor que k entre inicio y final")
     else:
-        return "No, no hay una ruta de peso menor que k entre inicio y final"
+        print("No, no hay una ruta de peso menor que k entre inicio y final")
 
 def inicializarDistancias(grafica, inicio):
     distancias = {}
@@ -55,11 +57,10 @@ def actualizarDistancia(distancias, verticeActual, vecino, colaPrioridad):
         distancias[vecino] = distancia_nueva
         colaPrioridad.put(vecino)
 
-# Ejemplo de uso
-nombre_archivo = "grafo_generado.txt"  # Nombre del archivo proporcionado por el usuario
+nombre_archivo = "grafoRutaMasCorta.txt"  # Nombre del archivo que esta dentro de la carpeta
 inicio = 1
 final = 7
 k = 4
 
 grafica = leer_grafica_desde_archivo(nombre_archivo)
-print(rutaMasCorta(grafica, inicio, final, k))
+rutaMasCorta(grafica, inicio, final, k)

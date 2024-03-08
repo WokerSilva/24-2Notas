@@ -1,5 +1,52 @@
-\section{3 - SAT}
+\section{3-SAT}
 
 \subsection{Dar su forma canónica}
 
+Problema de decisión 3-SAT: Dada una fórmula booleana en forma conjuntiva normal 
+(CNF) con exactamente tres literales por cláusula, ¿existe una asignación de valores 
+de verdad a las variables que haga que la fórmula sea verdadera?
+
+
 \subsection{Diseñar un algoritmo no-determinístico polinomial}
+
+\begin{verbatim}
+    Función principal rutaMasCorta(grafica, inicio, final, k):
+    // Paso 1: Inicialización
+    distancias = inicializarDistancias(grafica, inicio)
+    colaPrioridad = inicializarColaPrioridad(inicio)
+    
+    // Paso 2: Exploración
+    mientras colaPrioridad no esté vacía:
+        verticeActual = extraerVerticeMinimo(colaPrioridad)
+        para cada vecino en grafica[verticeActual]:
+            actualizarDistancia(distancias, verticeActual, vecino)
+    
+    // Paso 3: Verificación
+    si distancia entre inicio y final < k:
+        devolver "Sí, hay una ruta de peso menor que k entre inicio y final"
+    sino:
+        devolver "No, no hay una ruta de peso menor que k entre inicio y final"
+
+Función inicializarDistancias(grafica, inicio):
+    distancias = arreglo de tamaño igual al número de vértices en la gráfica
+    para cada vértice en la gráfica:
+        si vértice es igual a inicio:
+            distancias[vértice] = 0
+        sino:
+            distancias[vértice] = infinito
+    devolver distancias
+
+Función inicializarColaPrioridad(inicio):
+    colaPrioridad = cola de prioridad
+    agregar inicio a colaPrioridad con prioridad 0
+    devolver colaPrioridad
+
+Función extraerVerticeMinimo(colaPrioridad):
+    extraer y devolver vértice con menor prioridad de colaPrioridad
+
+Función actualizarDistancia(distancias, verticeActual, vecino):
+    si distancia desde inicio hasta vecino pasando por verticeActual es menor que distancias[vecino]:
+        distancias[vecino] = distancia desde inicio hasta vecino pasando por verticeActual
+        agregar vecino a colaPrioridad con prioridad distancias[vecino]
+
+\end{verbatim}
