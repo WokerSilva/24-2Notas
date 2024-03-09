@@ -39,46 +39,5 @@ entre $u$ y $v$ cuyo peso total sea menor que $k$?
     \item Nuestro proceso termina cuando todos los vértices fueron explorados o cuando la cola de prioridad está vacía.
 \end{myitemize}
 
-%%% nota de correcciones:  Ahora, en cada iteración del bucle principal, obtenemos aleatoriamente un vértice adyacente para explorar. Esto introduce no determinismo en la selección de vértices adyacentes y cumple con la primera fase del algoritmo no determinístico. 
-
-\begin{verbatim}
-    Función principal rutaMasCorta(grafica, inicio, final, k):
-    // Paso 1: Inicialización
-    distancias = inicializarDistancias(grafica, inicio)
-    colaPrioridad = inicializarColaPrioridad(inicio)
-    
-    // Paso 2: Exploración
-    mientras colaPrioridad no esté vacía:
-        verticeActual = extraerVerticeMinimo(colaPrioridad)
-        para cada vecino en grafica[verticeActual]:
-            actualizarDistancia(distancias, verticeActual, vecino)
-    
-    // Paso 3: Verificación
-    si distancia entre inicio y final < k:
-        devolver "Sí, hay una ruta de peso menor que k entre inicio y final"
-    sino:
-        devolver "No, no hay una ruta de peso menor que k entre inicio y final"
-
-Función inicializarDistancias(grafica, inicio):
-    distancias = arreglo de tamaño igual al número de vértices en la gráfica
-    para cada vértice en la gráfica:
-        si vértice es igual a inicio:
-            distancias[vértice] = 0
-        sino:
-            distancias[vértice] = infinito
-    devolver distancias
-
-Función inicializarColaPrioridad(inicio):
-    colaPrioridad = cola de prioridad
-    agregar inicio a colaPrioridad con prioridad 0
-    devolver colaPrioridad
-
-Función extraerVerticeMinimo(colaPrioridad):
-    extraer y devolver vértice con menor prioridad de colaPrioridad
-
-Función actualizarDistancia(distancias, verticeActual, vecino):
-    si distancia desde inicio hasta vecino pasando por verticeActual es menor que distancias[vecino]:
-        distancias[vecino] = distancia desde inicio hasta vecino pasando por verticeActual
-        agregar vecino a colaPrioridad con prioridad distancias[vecino]
-
-\end{verbatim}
+Ahora, en cada iteración del bucle principal, obtenemos aleatoriamente un vértice adyacente para explorar. Esto introduce no 
+determinismo en la selección de vértices adyacentes y cumple con la primera fase del algoritmo no determinístico. 

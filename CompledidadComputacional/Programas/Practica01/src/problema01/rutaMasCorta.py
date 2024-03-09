@@ -1,6 +1,7 @@
 import queue
 import random
 
+# leemos el archivo
 def leer_grafica_desde_archivo(nombre_archivo):
     grafica = {}
     with open(nombre_archivo, 'r') as archivo:
@@ -15,6 +16,7 @@ def leer_grafica_desde_archivo(nombre_archivo):
                 grafica[v2][v1] = 1
     return grafica
 
+# Esta función encuentra la ruta más corta en un grafo entre dos vertices
 def rutaMasCorta(grafica, inicio, final, k):
     # Paso 1: Inicialización
     distancias = inicializarDistancias(grafica, inicio)
@@ -37,6 +39,7 @@ def rutaMasCorta(grafica, inicio, final, k):
     else:
         print("No, no hay una ruta de peso menor que k entre inicio y final")
 
+# Inicializamos lass distancias para todos los vertices en el grafo
 def inicializarDistancias(grafica, inicio):
     distancias = {}
     for vertice in grafica:
@@ -46,11 +49,13 @@ def inicializarDistancias(grafica, inicio):
             distancias[vertice] = float('inf')
     return distancias
 
+# Cramos la cola de priodirdad añadiendo el vertice
 def inicializarColaPrioridad(inicio):
     colaPrioridad = queue.Queue()
     colaPrioridad.put(inicio)
     return colaPrioridad
 
+# Esta función actualiza la distancia entre dos vertices si se encuentra una ruta más corta.
 def actualizarDistancia(distancias, verticeActual, vecino, colaPrioridad):
     distancia_nueva = distancias[verticeActual] + 1  # Suponemos que todas las aristas tienen peso 1
     if distancia_nueva < distancias[vecino]:
