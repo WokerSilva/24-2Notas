@@ -32,7 +32,7 @@
 % -----------------------------------------------------------------------------\
 
 \begin{verbatim}
-entrada = Un grafica plana G=(V,E)
+entrada = Un grafica G=(V,E)
 
 Inicio
 1. Aleatoriamente asignar un color (de los 3 disponibles) 
@@ -197,35 +197,47 @@ puede colorear de manera válida si y solo si la instancia de 3SAT es satisfacti
 % ------------------------------------------------------------------------------\
 % -----------------------------------------------------------------------------\
 
-Imaginemos que una universidad que necesita programar exámenes finales para diferentes cursos. 
-Algunos estudiantes están inscritos en múltiples cursos, por lo que la universidad quiere asegurarse 
-de que no haya exámenes superpuestos para aquellos estudiantes.
+Imaginemos que una universidad que necesita programar exámenes finales para diferentes 
+materias. Algunos estudiantes están inscritos en múltiples cursos, por lo que la 
+universidad quiere asegurarse de que no haya exámenes encimados para los estudiantes.\\ 
 
-Problema de 3-Coloración: Cada curso se representa como un vértice en un gráfico. Si dos cursos 
-tienen estudiantes en común, se conectan con una arista. El objetivo es colorear el gráfico 
-(es decir, programar los exámenes) de tal manera que ningún par de vértices adyacentes 
-(cursos con estudiantes en común) tengan el mismo color (exámenes en el mismo día).
+\textbf{Problema de 3-Coloración:} Cada curso se representa como un vértice en una gráfica. 
+Si dos cursos tienen estudiantes en común, se conectan con una arista. El objetivo es 
+colorear la gráfica (es decir, programar los exámenes) de tal manera que ningún par de 
+vértices adyacentes (cursos con estudiantes en común) tengan el mismo color 
+(exámenes en el mismo día).
 
 \subsubsection*{\textcolor{Contraste3}{Solución}}
 
-Se crea un gráfico donde cada vértice representa un curso.
-Se añade una arista entre dos vértices si los cursos correspondientes tienen estudiantes en común.
-Se colorean los vértices de tal manera que no haya dos vértices adyacentes con el mismo color. Cada 
-color representa un día diferente de exámenes.
+\begin{myitemize}
+    \item Se crea un gráfica donde cada vértice representa un curso.
+    \item Se añade una arista entre dos vértices si los cursos correspondientes tienen estudiantes en común.
+    \item Se colorean los vértices de tal manera que no haya dos vértices adyacentes con el mismo color.
+    \item Cada color representa un día diferente de exámenes.
+\end{myitemize}
 
 \subsubsection*{\textcolor{Contraste3}{Ejemplo}}
 
-Los cursos de Álgebra y Cálculo tienen estudiantes en común, al igual que Álgebra y Física, y 
-Física y Estadística.
-Se dibuja un gráfico con vértices para Álgebra, Cálculo, Física y Estadística, y aristas que conectan 
-aquellos con estudiantes en común.
-Se asigna un color (día de examen) a cada curso de tal manera que ningún estudiante tenga dos exámenes el mismo día.
-Resultado:
+Tenemos 7 materias: ICC, Modelado, Bases de datos, Complejidad, IA, Probabilidad, Autómatas \\ 
 
-Día 1: Álgebra y Estadística.
-Día 2: Cálculo y Física.
-Este método asegura que todos los estudiantes puedan asistir a sus exámenes sin conflictos de horario1.
+\begin{myitemize}
+    \item ICC y Modelado comparten estudiantes.
+    \item ICC y Bases de datos comparten estudiantes.
+    \item ICC y Autómatas comparten estudiantes.
+    \item Modelado y Autómatas comparten estudiantes.
+    \item Bases de datos y Complejidad comparten estudiantes.
+    \item Complejidad y IA comparten estudiantes.
+    \item IA y Probabilidad comparten estudiantes.
+\end{myitemize}
 
-Esta técnica de 3-coloración también se utiliza en otros escenarios como la asignación de frecuencias en estaciones 
-de radio y la asignación de registros en compiladores, donde se busca minimizar la interferencia o el uso de 
-recursos compartidos
+Se asigna un color (día de examen) a cada curso de tal manera que ningún estudiante tenga dos exámenes el mismo día.\\ 
+
+
+\textbf{Resultado:}
+\begin{itemize}
+    \item[] Día 1 (Color 1): ICC, Bases de datos, IA
+    \item[] Día 2 (Color 2): Modelado, Autómatas
+    \item[] Día 3 (Color 3): Complejidad, Probabilidad
+\end{itemize}
+
+\noindent Este método asegura que todos los estudiantes puedan asistir a sus exámenes sin conflictos de horario.
