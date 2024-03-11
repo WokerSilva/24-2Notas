@@ -7,16 +7,20 @@ la carpeta src contiene dos carpetas: problema01 (archivos de la ruta más corta
 
 
 En la carpeta: problema01
- 1. El archvio generaGrafo.py 
+ 1. El archivo generaGrafo.py 
     debe ser el primer en ser ejecutado de la forma: python3 generaGrafo.py 
     esto va a generar el archivo .txt que contiene la grafica la cual carga una nueva 
-    aleatoriamente cada vez que se ejecuta el archvio
+    aleatoriamente cada vez que se ejecuta el archivo
 
  2. El archivo rutaMasCorta.py es el encargado de ejecutar el diseño del algoritmo
     Se ejecuta: python3 rutaMasCorta.py
 
 
 En la carpeta: problema02
+ 1. El archivo generaVariables.py 
+    debe ser el primer en ser ejecutado de la forma: python3 generaVariables.py  
+    esto va a generar el archivo .txt que contiene la formula la cual carga una nueva 
+    aleatoriamente cada vez que se ejecuta el archivo
 
-
-
+ 2. El archivo sat.py es el encargado de ejecutar el diseño del algoritmo en el pdf
+    Se ejecuta: python3 sat.py

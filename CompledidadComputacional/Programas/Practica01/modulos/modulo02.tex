@@ -2,51 +2,39 @@
 
 \subsection{Dar su forma canónica}
 
-Problema de decisión 3-SAT: Dada una fórmula booleana en forma conjuntiva normal 
-(CNF) con exactamente tres literales por cláusula, ¿existe una asignación de valores 
-de verdad a las variables que haga que la fórmula sea verdadera?
+\textbf{Representación:}
 
+\begin{myitemize}
+    \item Fórmula booleana: Es una expresión que combina variables verdaderas o falsas con operadores 
+            lógicos $(AND, OR, NOT)$.
+    \item Forma normal conjuntiva (CNF): Es una forma específica de expresar una fórmula booleana. 
+    \item Tres literales: En el contexto de 3-SAT, cada variable en la fórmula CNF tiene exactamente tres 
+            literales. Un literal es una variable verdadera o falsa.
+\end{myitemize}
+
+Por lo tanto, la forma canónica del problema 3-SAT es una pregunta: ¿Dada una fórmula booleana en CNF donde cada 
+cláusula tiene exactamente tres literales, ¿existe una asignación de verdad (verdadero o falso para cada variable) 
+que haga que toda la fórmula sea verdadera? Si tal asignación existe, decimos que la fórmula es satisfacible.
 
 \subsection{Diseñar un algoritmo no-determinístico polinomial}
 
-\begin{verbatim}
-    Función principal rutaMasCorta(grafica, inicio, final, k):
-    // Paso 1: Inicialización
-    distancias = inicializarDistancias(grafica, inicio)
-    colaPrioridad = inicializarColaPrioridad(inicio)
+\begin{myitemize}
+    \item Fase de adivinación:
     
-    // Paso 2: Exploración
-    mientras colaPrioridad no esté vacía:
-        verticeActual = extraerVerticeMinimo(colaPrioridad)
-        para cada vecino en grafica[verticeActual]:
-            actualizarDistancia(distancias, verticeActual, vecino)
+    \textbf{Adivina la asignación de verdad:} Para cada variable en la fórmula, adivina si es verdadera o falsa. Esta es 
+    la parte no determinística del algoritmo. No sabemos cuál es la correcta, al azar adivinamos. Dado que son dos 
+    variables esto podría verse como que estamos lanzando una moneda. 
+
+    \item Fase de verificación:
     
-    // Paso 3: Verificación
-    si distancia entre inicio y final < k:
-        devolver "Sí, hay una ruta de peso menor que k entre inicio y final"
-    sino:
-        devolver "No, no hay una ruta de peso menor que k entre inicio y final"
-
-Función inicializarDistancias(grafica, inicio):
-    distancias = arreglo de tamaño igual al número de vértices en la gráfica
-    para cada vértice en la gráfica:
-        si vértice es igual a inicio:
-            distancias[vértice] = 0
-        sino:
-            distancias[vértice] = infinito
-    devolver distancias
-
-Función inicializarColaPrioridad(inicio):
-    colaPrioridad = cola de prioridad
-    agregar inicio a colaPrioridad con prioridad 0
-    devolver colaPrioridad
-
-Función extraerVerticeMinimo(colaPrioridad):
-    extraer y devolver vértice con menor prioridad de colaPrioridad
-
-Función actualizarDistancia(distancias, verticeActual, vecino):
-    si distancia desde inicio hasta vecino pasando por verticeActual es menor que distancias[vecino]:
-        distancias[vecino] = distancia desde inicio hasta vecino pasando por verticeActual
-        agregar vecino a colaPrioridad con prioridad distancias[vecino]
-
-\end{verbatim}
+    \textbf{Verifica la asignación de verdad:} Ahora, con la asignación de verdad adivinada, verificamos si satisface 
+    todas las cláusulas de la fórmula. Para hacer esto, recorremos cada cláusula y verificamos si al menos una variable 
+    es verdadera bajo la asignación donde se adivina.
+    \begin{myitemize}
+        \item Si encontramos una cláusula que no es verdadera bajo la asignación adivinada, entonces sabemos que la 
+                asignación adivinada no satisface la fórmula, y el algoritmo se detiene y devuelve un mensaje 
+                de \textit{no encontrado}
+        \item Si todas las cláusulas son verdaderas bajo la asignación adivinada, entonces la asignación adivinada 
+        satisface la fórmula, y el algoritmo se detiene y devuelve \textit{si encontrado}
+    \end{myitemize}
+\end{myitemize}
