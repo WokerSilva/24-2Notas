@@ -1,0 +1,42 @@
+\documentclass{config-wokSH}
+\usepackage[spanish]{babel} % Idioma
+\input{packet/packet.tex}
+
+
+\usepackage[backend=biber, style=alphabetic, sorting=ynt]{biblatex}
+\bibliography{bibliografia.bib}
+\nocite{*} % Añade todas las referencias de bib sin cita
+
+
+
+% -------------------------------------------------------/
+% ------------------------------------------------------/
+\begin{document}
+
+\pagestyle{fancy}
+\thispagestyle{firstpage}
+% -----------------|
+% Portada Titulo   |
+\maketitle %       |
+% -----------------|
+
+% ------------------------------|
+\input{unidades/unidad01.tex} % |
+% ------------------------------|
+
+
+% --------------------|
+% Referencias         |
+% pdflatex main.tex   |
+% biber main          |
+% pdflatex main.tex   |
+\newpage %            |
+\printbibliography %  |
+% --------------------|
+
+
+  
+
+\end{document}
+% -----------------------------------------------------\
+% ------------------------------------------------------\

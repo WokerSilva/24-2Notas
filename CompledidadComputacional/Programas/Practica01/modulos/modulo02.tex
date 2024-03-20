@@ -1,0 +1,40 @@
+\section{3-SAT}
+
+\subsection{Dar su forma canónica}
+
+\textbf{Representación:}
+
+\begin{myitemize}
+    \item Fórmula booleana: Es una expresión que combina variables verdaderas o falsas con operadores 
+            lógicos $(AND, OR, NOT)$.
+    \item Forma normal conjuntiva (CNF): Es una forma específica de expresar una fórmula booleana. 
+    \item Tres literales: En el contexto de 3-SAT, cada variable en la fórmula CNF tiene exactamente tres 
+            literales. Un literal es una variable verdadera o falsa.
+\end{myitemize}
+
+Por lo tanto, la forma canónica del problema 3-SAT es una pregunta: ¿Dada una fórmula booleana en CNF donde cada 
+cláusula tiene exactamente tres literales, ¿existe una asignación de verdad (verdadero o falso para cada variable) 
+que haga que toda la fórmula sea verdadera? Si tal asignación existe, decimos que la fórmula es satisfacible.
+
+\subsection{Diseñar un algoritmo no-determinístico polinomial}
+
+\begin{myitemize}
+    \item Fase de adivinación:
+    
+    \textbf{Adivina la asignación de verdad:} Para cada variable en la fórmula, adivina si es verdadera o falsa. Esta es 
+    la parte no determinística del algoritmo. No sabemos cuál es la correcta, al azar adivinamos. Dado que son dos 
+    variables esto podría verse como que estamos lanzando una moneda. 
+
+    \item Fase de verificación:
+    
+    \textbf{Verifica la asignación de verdad:} Ahora, con la asignación de verdad adivinada, verificamos si satisface 
+    todas las cláusulas de la fórmula. Para hacer esto, recorremos cada cláusula y verificamos si al menos una variable 
+    es verdadera bajo la asignación donde se adivina.
+    \begin{myitemize}
+        \item Si encontramos una cláusula que no es verdadera bajo la asignación adivinada, entonces sabemos que la 
+                asignación adivinada no satisface la fórmula, y el algoritmo se detiene y devuelve un mensaje 
+                de \textit{no encontrado}
+        \item Si todas las cláusulas son verdaderas bajo la asignación adivinada, entonces la asignación adivinada 
+        satisface la fórmula, y el algoritmo se detiene y devuelve \textit{si encontrado}
+    \end{myitemize}
+\end{myitemize}

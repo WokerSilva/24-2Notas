@@ -1,0 +1,10 @@
+packet/
+IMA/
+*.cls
+*.aux
+*.bcf
+*.log
+*.out
+*.bbl
+*.blg
+*.run.xml

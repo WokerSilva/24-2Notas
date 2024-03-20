@@ -1,0 +1,43 @@
+\section{Ruta más corta}
+
+\subsection{Dar su forma canónica}
+
+Problema de decisión: Dada una gráfica no dirigida $G = (V, E)$, donde $V$ es el conjunto de vértices y $E$ 
+es el conjunto de aristas, y dados dos vértices $u$ y $v$, y un entero positivo $k$, ¿existe una trayectoria 
+entre $u$ y $v$ cuyo peso total sea menor que $k$?
+
+
+\subsection{Diseñar un algoritmo no-determinístico polinomial}
+
+\begin{myitemize}
+    \item Partimos que trabajaremos con:
+    \begin{myitemize}
+        \item Una grafica
+        \item Aristas
+        \item Vértices
+        \item Dos vértices preseleccionados 
+        \item un entero
+    \end{myitemize}
+
+    \item Vamos a comenzar con que distancias entre vértices son desconocidas. 
+    \item Creamos un arreglo para guardar esas distancias (distancias) 
+    \item Esas distancias se van a inicializar con valores infinitos 
+    \item Excepto para la distancia del vertice de inicio y final la cual será 0.
+
+    \item Usaremos una cola de prioridad para explorar todo los vértices. 
+    \item El vertice de inicio será el primero en agregarse a esta cola con distancia 0 (elegido aleatoriamente)
+    
+    \item Para poder explorar toda la gráfica vamos a seleccionar los vértices adyacentes al vértice que 
+    tengamos evaluando en la cola 
+    \item Una vez alcanzado vamos a actualizar las distancias a sus vecinos 
+    \item La actualización debe ser si es que encontramos un camino más corto
+        
+    \item Una vez que terminamos de revisar toda la grafica verificamos si la distancia entre los vértices de 
+        inicio y final es menor a la distancia $k$
+    \item Si lo es, hemos encontrado la ruta
+    \item Si no, no hay una ruta menor.
+    \item Nuestro proceso termina cuando todos los vértices fueron explorados o cuando la cola de prioridad está vacía.
+\end{myitemize}
+
+Ahora, en cada iteración del bucle principal, obtenemos aleatoriamente un vértice adyacente para explorar. Esto introduce no 
+determinismo en la selección de vértices adyacentes y cumple con la primera fase del algoritmo no determinístico. 

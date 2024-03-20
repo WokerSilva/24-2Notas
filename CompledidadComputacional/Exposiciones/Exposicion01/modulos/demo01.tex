@@ -1,0 +1,142 @@
+% ------------------------------------------------------------------------------\
+% -----------------------------------------------------------------------------\
+% ----------------------------------------------------------------------------\
+\section{COLOREACIÓN DE GRÁFICOS}
+% ------------------------------------------------------------------------------\
+% -----------------------------------------------------------------------------\
+% ----------------------------------------------------------------------------\
+
+Uno de los problemas clásicos de la teoría de grafos es el de colorear los vértices de un gráfico de 
+tal manera que no se asigne el mismo color a dos vértices adyacentes (es decir, conectados por una arista). 
+El número mínimo de colores necesarios para colorear G se llama número cromático, $\gamma$(G), de G.
+
+En esta sección, mostraremos que este problema es NPC. El problema sigue siendo NPC incluso si todo lo que 
+preguntamos es si $\gamma$(G) $\leq$ 3. Además, incluso si restringimos la pregunta al gráfico plano, el problema 
+sigue siendo NPC. Incluso si restringimos el problema a una clase de gráficos planos con realización plana 
+de buen comportamiento, el problema de si $\gamma$(G) $\leq$ 3 sigue siendo NPC. Uno de tales La definición para 
+una realización con buen comportamiento es que todos los bordes son líneas rectas, ningún ángulo es inferior 
+a 10 y las longitudes de los bordes están entre dos dados.
+límites.
+
+Primero consideramos el problema de las 3 colores, (3C), que se define de la siguiente manera:
+
+\textbf{Entrada:} Un gráfico $G(V, E)$.
+
+\textbf{Pregunta:} ¿Se puede asignar un color a cada vértice, de modo que solo se utilicen tres colores y no se asigne 
+el mismo color a dos vértices adyacentes? (En resumen: ¿es$\gamma$(G) $\leq$ 3?)
+
+\subsection*{Teorema: 3C es NPC.} 
+
+
+\textbf{Prueba:} \\
+Demostramos que 3SAT $ \alpha$ 3C.\cite{graph3} Sea el conjunto de literales, de la entrada I a 
+3SAT, $\{x_{1 }, x_ {2}, . . . , X_{n}, \bar{X_{1}}, \bar{X_{2}}, ..., \bar{X_{n}} \}$ y las cláusulas 
+sean $C_{1}$, $C_{2}$, ..., $C_{m}$.\\ 
+
+El gráfico G(V. E), que es la entrada f(I) a 3C, se define de la siguiente manera:\\ 
+
+$ V = \{ a,b \} \cup \{ x_{i}, \bar{x_{i}} \hspace{3mm} | \hspace{3mm} 1 \leq i \leq n \}  \cup \{ w_{ij} \hspace{3mm} | \hspace{3mm} 1 \leq i \leq 6 \text{y} 1 \leq j \leq m \}$
+
+$ E = \{a - b\} \cup \{a - x_{i}, a - \bar{x_{i}}, x_{i} - \bar{x_{i}} \hspace{3mm} | \hspace{3mm} 1 \leq i \leq i \} \cup$\\
+\textcolor{AzulRey}{.} \hspace{12mm} $\{w_{1j}, - w_{2j}, w_{1j} - w_{4j}, w_{2j} - w_{4j}, w_{4j} - w_{5j}, $ \\
+\textcolor{AzulRey}{.} \hspace{12mm} $ w_{3j} - w_{5j}, w_{3j} - w_{6j}, w_{5j} - w_{6j}, w_{6j} - b \hspace{3mm} | \hspace{3mm} 1 \leq j \leq m \}  \hspace{3mm} \cup $ \\ 
+\textcolor{AzulRey}{.} \hspace{12mm} $\{ \xi_{1j} -  w_{1j},  \xi_{2j} - w_{2j}, \xi_{3j} -  w_{3j}  \hspace{3mm} | \hspace{3mm} 1 \leq j \leq m  \hspace{4mm} \text{and} $ \\ 
+\textcolor{AzulRey}{.} \hspace{12mm} $C_{j} = \{ \xi_{1j},  \xi_{2j},  \xi_{3j}, \}\} $\\ 
+
+
+La estructura de las dos últimas partes de la definición de E, para cada j, se muestra en la Figura 10.2. El significado 
+de esta estructura es el siguiente: Supongamos que cada uno de los vértices $\xi_{1j}, \xi_{2j}$ y $\xi_{3j}$ 
+está coloreado 0 o 1 (asumimos que los tres colores son 0, 1 y 2) e ignoramos por el momento el vértice b. 
+Afirmamos que $w_{6j}$, puede colorearse 1 o 2 si y solo si no los tres vértices $\xi_{1j}, \xi_{2j}$ y $\xi_{3j}$
+están coloreados 0. Primero, es fácil ver que si $\xi_{1j}, \xi_{2j}$ y $\xi_{3j}$ están coloreados 0, 
+entonces $w_{4j}$ también debe ser coloreado 0, y por lo tanto debemos ser coloreados 0. Pero, como el lector 
+puede comprobar por sí mismo, si al menos uno de $\xi_{1j}, \xi_{2j}, \xi_{3j}$, está coloreado 1 entonces 
+$w_{6j}$ se puede colorear 1. La estructura de las dos primeras partes de la definición de E se muestra en la 
+figura 10.3. Claramente, si a tiene el color 2, entonces todos los vértices literales deben tener el color 0 y 1, 
+uno de estos colores se usa para $w_{i}$ y el otro para $\bar{w_{i}}$. Supongamos que \textit{I} es satisfactoria 
+mediante alguna asignación de valor de verdad a los literales. Para ver que \textit{f(I)} tiene 3 colores, asigne a 
+a el color 2. Asigne al literal $\xi$ el color 1 si es 'verdadero' y 0 si es 'falso'. Ahora, dado que a ningún 
+triple $\xi_{1j}, \xi_{2j}, \xi_{3j}$ se le asignan todos ceros, podemos colorear $w_{1i}, w_{2j}. . . w_{6j}$ de 
+tal manera que $w_{6j}$ tenga el color 1, para todo $j = 1, 2, ..., m$. Por lo tanto, b es coloreable 0 y la 
+coloración 3 de G está completa. Por el contrario, si G tiene 3 colores, llame al color de a 2 y al color de b 0. 
+Claramente, todos los vértices literales están coloreados 0 y 1, y $w_{6j}$ no puede ser coloreado 0. Por lo tanto, 
+para cada triple $\xi_{1j}, \xi_{2j}, \xi_{3j}$, no los tres están coloreados 0. Ahora, si asignamos un literal 
+'verdadero' si y sólo si su vértice correspondiente está coloreado 1, la asignación satisface todas las cláusulas. \\ 
+
+
+Antes de abordar el problema de la colorabilidad tridimensional de los gráficos planos en general, consideremos el 
+gráfico plano D con forma de diamante de la Figura 10.4. Supongamos que lo coloreamos con los tres colores 0, 1 y 2. 
+Si $u_{0}$ tiene el color 0, el circuito $u_{1} - u_{2} - u_{3} - u_{4} - u_ {1}$, tiene el color 1 y 2, 
+alternativamente. Para definición, suponga que $ u_ {1} $ y $ u_ {3} $ están coloreados 1 y $u_ {2}$ y $ u_ {4}$ 
+están coloreados 2. Ahora, hay dos colores posibles para nosotros; es decir, i.e 0 o 2. Si $u_ {5}$ tiene el color 0,
+entonces $v_{1}$, tiene el color 2, $v_{4}$ tiene el color 1, $v_{6}$ tiene el color 0, $v_{2}$ tiene el color 2,
+$u_{7}$ tiene el color 0, $v_{3}$ tiene el color 1 y $u_{8}$ tiene el color 0. Lo importante es el hecho es que 
+$v_{1}$ y $v_{2}$ tienen el mismo color (2) y $v_{3}$ y $v_{4}$ tienen el mismo color (1). Si $u_{5}$ tiene el color 2, 
+entonces $v_{1}$, tiene el color 0, $u_{8}$ tiene el color 1, $v_{3}$ tiene el color 0, $v_{7}$ tiene el color 2, 
+$v_{2}$ tiene el color 0, $u_{6}$ tiene el color 1 y $v_{4}$ tiene el color 0; es decir, los cuatro vértices, 
+$v_{1}, v_{2}, v_{3}$ y $v_{4}$ tienen colores idénticos. Concluimos que en cada coloración triple de D $v_{1}$ y $v_{2}$
+deben tener el mismo color, $v_{3}$ y $v_{4}$ deben tener el mismo color, pero el color de $v_{1}$ y $v_{3}$ pueden ser 
+o no el mismo. Así, D, efectivamente realiza un cruce de la coloración de $v_{1}$ a $v_{2}$, de $v_{3}$ a $v_{4}$ sin ninguna restricción en cuanto a
+Se introduce la igualdad o desigualdad del color de $v_{1}$ y $v_{3}$.\\ 
+
+
+El problema de las 3 colores de gráficos planos (3CP) se define de la siguiente manera:
+
+\textbf{Pregunta:} ¿Es $\gamma (G) \leq 3 $?
+
+(Recordamos al lector que una gráfica plana es un dibujo de una gráfica en el plano, de modo que no hay dos aristas 
+que compartan un punto excepto, posiblemente, un punto final mutuo.)
+
+\subsection*{Teorema: 3CP es NPC} 
+
+\textbf{Prueba:}\\ 
+Demostramos que 3C $\alpha$ 3CP. Sea $G(V, E)$ la entrada $I$ para el problema 3C, donde 
+$V = \{v_{1}, v_{2}, ..., v_{n} \}$. Construimos $f(I)$ en dos pasos. Primero, construya un diseño general, 
+como se demuestra en la figura 10.5 para el caso de $n = 5$. Este diseño general depende sólo de $n$, y no de $E$. 
+(La idea aquí es una variación de la construcción de Johnson, basada en una red de clasificación simple y bien 
+conocida, de la cual se omiten las dos últimas capas. 
+% Para una descripción de la red de clasificación, consulte, por ejemplo, las referencias [4] o [5].) 
+Este diseño tiene $n - 1$ capas principales de vértices y $n$ columnas principales de vértices; estos vértices 
+se denotan $u_{ij}$ donde $1 \leq i \leq n - 1$ y $1 \leq j \leq n$. Si $ i + j$ es par entonces se construye una 
+copia de $D$ con los vértices $ u_{ij} , u_{i(j+1)}, u_{(i+1)j} $ y $ u_{( i+1)(j+1)} $ desempeñando el papel 
+de los cuatro puntos de $D$. Si $i < n - 1$ e incluso entonces $u_{i1}$ y $u_{(i+1)1}$ están conectados a través 
+de dos nuevos vértices como se muestra en la Fig. 10.5 en el caso de $u_{21} $ y $u_{31}$. Si $i < n - 1$ y $i + n$ 
+es par, entonces $u_{in}$ está conectado, de manera similar, a $u_{(i+1)n}$; vea $u_{15}$ y $u_{25}$, y 
+también $u_{35}$ y $u_{45}$ en la figura 10.5. Esto completa la descripción del diseño.
+
+Suponiendo que todos los vértices $*$ estén coloreados usando solo tres colores. Claramente, 
+$u_{11}$, $u_{22}. . . , u_{(n-1)(n-2)} $ están todos coloreados de forma idéntica. Si $i > 1$ y es impar entonces 
+$u_{11}, u_{2(i+1)}, ... , u_{(n-i+1)n}, u_{(n-i+2) n}, u_{(n-i+3)(n-1)}, ..., u_{(n-1)(n-i+3)} $ tienen todos 
+colores idénticos. Además, si $n$ es par $u_{1n}, u_{2(n-1)},. . . , u_{(n-1)2}$ es una pista de este tipo, y 
+si $ i < n$ e incluso entonces $ u_{1i}, u_{2(i-1)},. . . , u_{i1}, u_{(i+1)1}, u_{(i+2)2}, . . . , u_{(n-1)(n-i-1)} $ 
+es una de esas pistas. Llamemos a la pista que comienza en $u_{1i}$ la pista $i$-ésima.
+
+Queremos mostrar que por cada dos pistas hay al menos una $1 \leq i \leq n - 1$ y $1 \leq j < n$ 
+tal que $u_{ij}$ está en una de estas pistas y $u_{ (i)j+1}$ está en el otro. Si esto sucede, decimos que estas 
+dos pistas son adyacentes en el nivel $i$.
+
+Supongamos que $i$ y $j$ son ambos impares y $i <j$. Si $i = 1$ entonces su pista corta diagonalmente de 
+$u_{11}$ a $u_{(n-1)(n-1)}$, y claramente es adyacente a cualquier otra pista en algún lugar; de hecho, 
+si $j \neq 3$ entonces las dos vías se cruzan. Si $i > 1$ entonces la pista $i$-ésima termina en 
+$u_{(n-1) (n-j+3)}$ y la $j$-ésima en $u_{(n-1) ( n-j+3)}$. Por tanto, se cruzan en algún lugar.
+
+El caso de $i$ y $j$ incluso se maneja de manera similar.
+Si $i <j, i$ es impar y $j$ es par, entonces las dos vías se cruzan antes de que cualquiera de ellas llegue al lado.
+Si $i < j, i$ es par, $j$ es impar, entonces la pista $i$-ésima termina en $ u_{(n-1)(n-i-1)}$ y la $j$-ésima 
+pista termina en $u(n-1)(n-j+3)$. Si $j - i = 1$ son adyacentes en el primer nivel. Si $j - i \geq 3$ entonces
+
+$ (n- j + 3) - (n - i -1) = -(j - i) + 4 \leq 1 $
+
+Ahora pasemos a la segunda parte de la reducción. Si $v_{i} - v_{j}$ en $G$, agregue una ventaja 
+$u_{kl} - u_{k(l+1)}$ al diseño, donde $u_{kj}$ está en $ i$-ésima pista (o la $j$-ésima pista) y 
+$u_{k(l +1)}$ está en la $j$-ésima pista (o la $i$-ésima pista). Estos $k$ y $l$ se pueden encontrar ya que cada 
+dos pistas son adyacentes en algún lugar.
+
+
+Ahora, si $G$ tiene 3 colores. colorea todos los vértices de la $i$-ésima pista con el color de $v_{l}$. 
+Claramente, los vértices restantes de $f(l)$ también pueden colorearse legalmente; los vértices en las 
+estructuras $D$ y los pares de conexión se colorean fácilmente, y los bordes que corresponden a los bordes 
+de $E$ se conectan entre pistas de diferente color. Por el contrario, si $f(I)$ tiene 3 colores, cada pista 
+tiene un color uniforme y podemos asignar $v_{l}$ en $G$, el mismo color. No hay dos vértices adyacentes 
+en $G$ que tengan el mismo color, porque hay un borde que conecta las dos pistas correspondientes en $f(I)$, 
+y dado que $f(1)$ está coloreado legalmente, los colores de estas dos pistas son diferente.
