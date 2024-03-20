@@ -1,0 +1,284 @@
+\section{Búsqueda}
+
+La búsqueda juega un papel fundamental en el corazón de la inteligencia artificial. Desde la planificación
+de rutas óptimas en sistemas de navegación hasta la toma de decisiones en entornos complejos, 
+los algoritmos de búsqueda son la columna vertebral de muchas aplicaciones de IA.\\ 
+
+% -------------------------------------------------------------------------------------/
+% ------------------------------------------------------------------------------------/
+% -----------------------------------------------------------------------------------/
+\subsection{Resolver problemas mediante búsquedas}
+% -------------------------------------------------------------------------------------/
+% ------------------------------------------------------------------------------------/
+% -----------------------------------------------------------------------------------/
+
+% -------------------------------------------------------------------------------------/
+% ------------------------------------------------------------------------------------/
+\subsubsection*{Agentes resolventes-problemas}
+% -------------------------------------------------------------------------------------/
+% ------------------------------------------------------------------------------------/
+
+Los agentes resolventes-problemas deciden qué hacer para encontrar secuencias de acciones que conduzcan 
+a los estados deseables. Comenzamos definiendo con precisión los elementos que constituyen el 
+\textit{problema} y su \textit{solución} y daremos diferentes ejemplos para ilustrar estas 
+definiciones. Entonces, describimos diferentes algoritmos de propósito general que podamos utilizar 
+para resolver estos problemas y así comparar las ventajas de cada algoritmo. Los algoritmos son no 
+informados, en el sentido que no dan información sobre el problema salvo su definición.\\ 
+
+
+Los agentes solucionadores de problemas son capaces de representar el problema en términos formales, 
+identificar y evaluar posibles acciones, y seleccionar las más prometedoras en función de ciertos 
+criterios, como la optimización del costo o la eficiencia. Además, pueden utilizar información adicional, 
+como heurísticas, para guiar la búsqueda hacia soluciones más rápidas y efectivas.\\ 
+
+% -------------------------------------------------------------------------------------/
+% ------------------------------------------------------------------------------------/
+\subsubsection*{Problemas y Soluciones}
+% -------------------------------------------------------------------------------------/
+% ------------------------------------------------------------------------------------/
+
+En el contexto de la inteligencia artificial, definir un problema de manera formal es esencial para 
+aplicar algoritmos de búsqueda y encontrar soluciones efectivas. Un problema formal consta de 
+varios componentes fundamentales que permiten al agente solucionador de problemas entender la 
+naturaleza del problema y trabajar hacia su resolución de manera sistemática.\\ 
+
+Para ilustrar estos componentes, consideremos el problema de planificación de ruta en un mapa. 
+Imaginemos que tenemos un mapa de una ciudad y deseas encontrar la ruta más corta desde tu 
+ubicación actual hasta un destino específico.
+
+\begin{myitemize}
+    \item Estado Inicial: El estado inicial en este problema sería la ubicación actual en el mapa.
+        
+    \item Descripción de las Posibles Acciones Disponibles: Las posibles acciones disponibles son las 
+    decisiones que el agente puede tomar en cada estado para avanzar hacia el objetivo. Estas acciones 
+    podrían incluir moverse hacia adelante, girar a la derecha, girar a la izquierda o retroceder. 
+    La formulación más común utiliza una función sucesor para describir estas acciones en función del 
+    estado actual del agente.
+    
+    \item Test Objetivo: El test objetivo define las condiciones que deben cumplirse para determinar si 
+    el objetivo ha sido alcanzado. En nuestro ejemplo, el test objetivo sería llegar a la ubicación 
+    deseada en el mapa.
+    
+    \item Costo del Camino: El costo del camino es la medida del esfuerzo o la distancia asociada con 
+    cada acción tomada por el agente. En el contexto de la planificación de ruta, el costo del camino 
+    podría ser la distancia recorrida desde el estado inicial hasta el estado objetivo.
+\end{myitemize}
+
+
+El problema del 8-Puzle es un clásico problema de rompecabezas deslizante en el que el objetivo es 
+organizar una cuadrícula de 3x3 con fichas numeradas del 1 al 8, más un espacio en blanco, en un 
+estado objetivo particular.
+
+\begin{myitemize}
+    \item \textbf{Estado Inicial:} Tenemos un tablero inicial de 3x3, con 8 fichas que se mueven las 
+    cuales están distribuidas de manera aleatoria dentro del tablero.
+
+    \item \textbf{Acciones Disponibles:} Las acciones disponibles para mover las fichas son: arriba,
+    abajo, derecha o izquierda y lo movimientos solo pasan si es a través de cuadro blanco o vacio.         
+    
+    \item \textbf{Test Objetivo:} Se compara el estado actual del rompecabezas con el estado objetivo 
+    El cual es que las fichas estén ordenadas desde 1 a 8 y  el espacio en blanco está en la 
+    ubicación deseada.
+    
+    \item \textbf{Costo del Camino:} El costo del camino se calcula contando el número de movimientos 
+    realizados desde el estado inicial hasta el estado objetivo. Cada movimiento de una ficha se suma al 
+    costo total del camino.
+\end{myitemize}
+
+
+% -------------------------------------------------------------------------------------/
+% ------------------------------------------------------------------------------------/
+\subsubsection*{Elementos de los problemas de búsqueda}
+% -------------------------------------------------------------------------------------/
+% ------------------------------------------------------------------------------------/
+
+\begin{myitemize}
+    \item Árbol de Búsqueda: Se puede representar la exploración del espacio de estados
+            como un árbol de búsqueda, donde cada nodo es un estado y las aristas son las
+            acciones que conducen de un estado a otro.
+
+    \item Complejidad Temporal y Espacial: La complejidad temporal se refiere al tiempo
+            necesario para encontrar una solución, mientras que la complejidad espacial se
+            refiere al espacio de almacenamiento necesario durante la búsqueda.
+
+    \item Búsqueda No Informada (ciega): En la búsqueda no informada, el agente no tiene
+            información sobre la probabilidad de alcanzar el estado objetivo desde un estado
+            dado. Métodos como la búsqueda en anchura y la búsqueda en profundidad son
+            ejemplos de estrategias no informadas.
+
+    \item Búsqueda Informada (heurística): En la búsqueda informada, el agente utiliza
+            información adicional para guiar la exploración hacia el estado objetivo de manera
+            más eficiente. La heurística es una función que estima el costo desde un estado
+            hasta el objetivo.            
+
+    \item Heurísticas Admisibles e Inadmisibles: Una heurística es admisible si nunca
+            sobreestima el costo para llegar al objetivo desde un estado dado. Las
+            heurísticas inadmisibles pueden sobreestimar o subestimar el costo.
+
+    \item Optimalidad: Una solución es óptima si es la más corta o la de menor costo
+            entre todas las soluciones posibles.
+            
+    \item Problema del Espacio de Estado Infinito: Algunos problemas de búsqueda
+            pueden tener un espacio de estados infinito, lo que plantea desafíos
+            adicionales en la representación y exploración.
+\end{myitemize}
+
+
+\subsubsection*{Árbol de búsqueda}
+
+\noindent Vamos a ilustrar una solución de búsqueda por árbol para el problema del 8-Puzle,
+modelamos el problema y aplicaremos un algoritmo de búsqueda no informada.\\ 
+
+\noindent El planteamiento del Problema: El objetivo es organizar las fichas numeradas
+del 1 al 8 en una cuadrícula de 3x3, dejando el espacio en blanco en la posición inferior derecha.
+
+\noindent Modelado del Problema:
+
+\begin{myitemize} 
+    \item Estado Inicial: Un tablero de 3x3 con las fichas distribuidas aleatoriamente.
+    \item Acciones Disponibles: Mover una ficha adyacente al espacio en blanco hacia arriba, abajo, 
+            derecha o izquierda.
+    \item Test Objetivo: El tablero coincide con el estado objetivo.
+    \item Costo del Camino: Cada movimiento incrementa el costo en 1.
+\end{myitemize}
+
+Árbol de Búsqueda: Representamos cada estado del tablero como un nodo y cada movimiento posible como una 
+arista que conecta los nodos.
+\begin{myitemize} 
+    \item[] Complejidad
+    \begin{myitemize} 
+        \item Temporal: El tiempo necesario para encontrar una solución puede ser exponencial, ya que el 
+                número de estados posibles es muy grande.
+        \item Espacial: El espacio necesario para almacenar el árbol de búsqueda también puede 
+                ser exponencial.
+    \end{myitemize}
+
+    \item[] Búsqueda No Informada: Utilizaremos la búsqueda en anchura (BFS) Proceso de Búsqueda:
+    \begin{myitemize} 
+        \item Generamos el nodo raíz con el estado inicial.
+        \item Expandimos el nodo raíz creando nodos hijos para cada acción posible.
+        \item Continuamos expandiendo los nodos en orden de anchura, nivel por nivel.
+        \item Si un nodo alcanza el test objetivo, detenemos la búsqueda.
+    \end{myitemize}    
+
+    \item[] Optimalidad: La búsqueda en anchura garantiza encontrar la solución óptima en términos de 
+            menor número de movimientos.
+\end{myitemize}
+
+
+% -------------------------------------------------------------------------------------/
+% ------------------------------------------------------------------------------------/
+% -----------------------------------------------------------------------------------/
+\subsection{Busqueda No Informada}
+% -------------------------------------------------------------------------------------/
+% ------------------------------------------------------------------------------------/
+% -----------------------------------------------------------------------------------/
+
+Imaginemos que estamos por comenzar a caminar en un bosque sin embargo lo haremos sin un mapa. La 
+estrategia sería explorar y probar caminos hasta encontrar la salida. Esto es en palabras sencillas 
+lo que hace una busqueda no informada: exploran sin pistas adicionales, solo la definición del 
+problema. Este es un enfoque utilizado en inteligencia artificial para resolver problemas donde no 
+se dispone de información adicional sobre el espacio de búsqueda se basa únicamente en la 
+exploración sistemática del espacio de estados, sin utilizar heurísticas o conocimiento específico 
+sobre el problema.\\ 
+
+\subsubsection*{Búsqueda en primero a lo ancho (BFS)} 
+
+Es como una ola que se expande en el agua. Desde tu punto de partida, revisas todos los caminos 
+cercanos antes de ir más lejos. Es opción interesante para encontrar la ruta más corta en un mapa 
+o el menor número de movimientos en un juego de mesa.
+
+\begin{myitemize} 
+    \item[] Pseudocódigo BFS
+    \begin{verbatim}
+    BFS(estado_inicial, test_objetivo):
+        crea una cola con el estado_inicial
+        mientras la cola no esté vacía:
+            estado = cola.desencolar()
+            si test_objetivo(estado):
+                devuelve la solución
+        para cada acción en estado:
+                hijo = aplica acción a estado
+                cola.encolar(hijo)
+        devuelve fracaso
+    \end{verbatim}
+\end{myitemize}
+
+\subsubsection*{Búsqueda primero en lo profundo (DFS)} 
+
+Es como seguir un camino en el bosque hasta el final antes de regresar y probar otro. Es útil 
+cuando tienes muchos caminos y no te importa cuán largo sea, solo quieres llegar al 
+final rápidamente.
+
+
+\begin{myitemize} 
+    \item[] Pseudocódigo DFS:
+    \begin{verbatim}
+    DFS(estado_inicial, test_objetivo):
+        crea una pila con el estado_inicial
+        mientras la pila no esté vacía:
+            estado = pila.desapilar()
+            si test_objetivo(estado):
+                devuelve la solución
+            para cada acción en estado:
+                hijo = aplica acción a estado
+                pila.apilar(hijo)
+        devuelve fracaso    
+    \end{verbatim}
+\end{myitemize}
+
+
+Búsqueda de costo uniforme: Piensa en un sistema de subasta donde cada movimiento 
+tiene un precio y quieres gastar lo menos posible. Esta búsqueda siempre elige el 
+camino más barato hasta ahora, ideal para planificar presupuestos o rutas de viaje 
+con diferentes costos.\\ 
+
+Búsqueda en profundidad limitada (DLS): Es como DFS, pero con un límite. Te pones 
+un casco con una linterna que solo alcanza cierta distancia. Exploras hasta ese 
+límite y si no encuentras la salida, retrocedes. Es bueno para cuando DFS se va 
+demasiado profundo y quieres ponerle un toque de control.
+
+% -------------------------------------------------------------------------------------/
+% ------------------------------------------------------------------------------------/
+% -----------------------------------------------------------------------------------/
+\subsection{Busqueda Informada}
+% -------------------------------------------------------------------------------------/
+% ------------------------------------------------------------------------------------/
+% -----------------------------------------------------------------------------------/
+
+\subsubsection*{Funciones heurísticas}
+
+Las funciones heurísticas son como brújulas que orientan a los algoritmos de búsqueda 
+hacia la solución. Son métodos de evaluación que proporcionan una estimación del costo 
+o la distancia desde un estado dado hasta el objetivo en un problema de búsqueda. Estas 
+funciones son fundamentales en las estrategias de búsqueda informada, ya que guían la 
+exploración del espacio de búsqueda al proporcionar información sobre qué tan cerca está  
+un estado del objetivo. Una buena función heurística es aquella que es admisible (no 
+sobreestima el costo) y consistente (sigue un patrón predecible de valores). 
+
+\subsubsection*{Búsqueda voraz primero el mejor}
+
+La búsqueda voraz primero el mejor es una estrategia que elige el siguiente nodo a 
+explorar basándose únicamente en el costo estimado desde el nodo actual hasta el objetivo. 
+No considera el costo total acumulado hasta el momento, lo que puede llevar a soluciones 
+rápidas pero no siempre óptimas. Es como decidir qué camino tomar en un laberinto mirando 
+solo lo que está más cerca del final, sin pensar en si ese camino podría tener obstáculos 
+más adelante.
+
+\subsubsection*{Búsqueda $A^{*}$}
+
+La búsqueda $A^{*}$ es una estrategia de búsqueda informada que combina la ventaja de la 
+búsqueda voraz primero el mejor (evaluando nodos basándose en la estimación del costo 
+hasta el objetivo) con la consideración del costo total acumulado hasta el momento. Esto 
+permite encontrar una solución óptima si la función heurística utilizada es admisible y 
+consistente. Es como tener un mapa detallado del laberinto y usarlo para tomar decisiones 
+inteligentes sobre qué camino tomar, considerando tanto la distancia al final como los 
+obstáculos en el camino.
+
+\subsubsection*{Búsqueda heurística con memoria acotada}
+
+La búsqueda heurística con memoria acotada es una estrategia que utiliza información 
+parcial del espacio de búsqueda para limitar la exploración a áreas más prometedoras. 
+Esto se logra manteniendo una lista de nodos prometedores conocidos como 
+\textit{memoria acotada}, lo que evita la repetición de exploraciones innecesarias y 
+mejora la eficiencia de la búsqueda.

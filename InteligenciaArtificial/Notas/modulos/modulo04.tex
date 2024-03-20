@@ -1,0 +1,152 @@
+\section{Algoritmo Genético}
+
+% --------------------------------------------------------------------------------------/
+% -------------------------------------------------------------------------------------/
+% ------------------------------------------------------------------------------------/
+\subsection*{¿Qué es el algoritmo Genético?}
+% -------------------------------------------------------------------------------------/
+% ------------------------------------------------------------------------------------/
+% -----------------------------------------------------------------------------------/
+
+Un algoritmo genético \texttt{(AG)} entonces es: una técnica de resolución de problemas 
+que utiliza principios inspirados en la selección natural para solucionar problemas de 
+optimización. La selección natural (evolución) como estrategia implica la creación, 
+reproducción y adaptación de una población de posibles soluciones en un rango de generaciones.\\ 
+
+Este enfoque de población se basa en que cada individuo representa una posible solución 
+al problema, y la evolución de estos comienza por, la \textbf{creación} de los individuos, 
+la \textbf{reproducción} para después hacer la óptima \textbf{selección} de los padres en 
+una nueva reproducción y \textbf{mutación}, finalmente comprobar o evaluar su \textbf{aptitud}\\ 
+
+% -------------------------------------------------------------------------------------/
+% ------------------------------------------------------------------------------------/
+\subsubsection*{Algoritmo genético vs. Búsqueda no informada}
+% -------------------------------------------------------------------------------------/
+% ------------------------------------------------------------------------------------/
+
+Los algoritmos genéticos y la búsqueda no informada son enfoques diferentes para resolver 
+problemas de optimización. Un algoritmo genético es una técnica inspirada en la evolución 
+biológica, donde una población de soluciones potenciales evoluciona a lo largo de 
+generaciones mediante operadores como la selección, el cruce y la mutación. Por ejemplo, 
+imagina que queremos encontrar la mejor ruta para entregar paquetes en una ciudad. Un 
+algoritmo genético podría representar diferentes rutas como individuos en una población, 
+y a través de generaciones, las mejores rutas (soluciones) se \textit{reproducen} y mejoran.\\ 
+
+
+En contraste, la búsqueda no informada es más como un proceso de prueba y error sin guía 
+específica. Por ejemplo, si estuviéramos buscando un objeto en una habitación oscura, 
+podríamos usar un enfoque de búsqueda no informada moviéndonos aleatoriamente y esperando 
+encontrar el objeto eventualmente. Sin embargo, este enfoque puede ser ineficiente ya que 
+no utiliza información sobre la ubicación probable del objeto.
+
+
+% -------------------------------------------------------------------------------------/
+% ------------------------------------------------------------------------------------/
+\subsubsection*{Algoritmo genético vs. Búsqueda informada}
+% -------------------------------------------------------------------------------------/
+% ------------------------------------------------------------------------------------/
+
+Los algoritmos genéticos y la búsqueda informada se diferencian en la forma en que 
+utilizan la información sobre el problema para dirigir la búsqueda hacia soluciones 
+óptimas. En el caso de un algoritmo genético, la información proviene de la evaluación de 
+la aptitud de las soluciones en función de un objetivo específico. Por ejemplo, en un 
+problema de programación de horarios escolares, las soluciones que evitan superposiciones 
+de clases y maximizan el uso de recursos se considerarían más aptas.\\ 
+
+Por otro lado, la búsqueda informada, como el algoritmo $A^{*}$ utiliza información más 
+detallada sobre el problema, como funciones heurísticas que estiman el costo desde un 
+estado dado hasta el objetivo. Siguiendo con el ejemplo del horario escolar, una función 
+heurística podría estimar la eficiencia de una programación en términos de número de horas 
+de clase y recursos utilizados. Esto permite a la búsqueda informada dirigirse hacia 
+soluciones prometedoras de manera más eficiente que la búsqueda no informada o los 
+algoritmos genéticos, especialmente en problemas donde se dispone de información detallada 
+sobre el dominio del problema.
+
+
+
+% -------------------------------------------------------------------------------------/
+% ------------------------------------------------------------------------------------/
+% -----------------------------------------------------------------------------------/
+\subsection{Pasos que sigue}
+% -------------------------------------------------------------------------------------/
+% ------------------------------------------------------------------------------------/
+% -----------------------------------------------------------------------------------/
+
+
+% ------------------------------------------------------------------------------------/
+% -----------------------------------------------------------------------------------/
+\subsubsection*{Inicialización de la Población 01}
+% -------------------------------------------------------------------------------------/
+% ------------------------------------------------------------------------------------/
+
+Comenzamos con una población inicial de posibles rutas para la entrega de paquetes. 
+Cada individuo en la población representa una ruta diferente que conecta diferentes 
+ubicaciones en la ciudad.
+
+% ------------------------------------------------------------------------------------/
+% -----------------------------------------------------------------------------------/
+\subsubsection*{Evaluación de la Aptitud 02}
+% -------------------------------------------------------------------------------------/
+% ------------------------------------------------------------------------------------/
+
+Se evalúa cada ruta utilizando una función de aptitud que considera factores como la 
+distancia recorrida, el tiempo de entrega y la eficiencia en el uso de recursos. 
+Esto asigna a cada ruta un valor numérico que indica qué tan buena es en comparación 
+con otras.
+
+
+% ------------------------------------------------------------------------------------/
+% -----------------------------------------------------------------------------------/
+\subsubsection*{Selección de Padres 03}
+% -------------------------------------------------------------------------------------/
+% ------------------------------------------------------------------------------------/
+
+Los individuos con mayor aptitud tienen una mayor probabilidad de ser seleccionados 
+como padres para la reproducción. Esto se hace de manera aleatoria, pero con una mayor 
+probabilidad para los individuos más aptos.
+
+% ------------------------------------------------------------------------------------/
+% -----------------------------------------------------------------------------------/
+\subsubsection*{Reproducción 04} 
+% -------------------------------------------------------------------------------------/
+% ------------------------------------------------------------------------------------/
+
+Se eligen dos padres de la población seleccionada y se combinan para crear nuevos 
+descendientes. Esto se logra cruzando las cadenas genéticas de los padres en un punto 
+de cruce aleatorio. Por ejemplo, si un padre tiene una ruta que pasa por un conjunto 
+de ubicaciones y el otro padre tiene otra ruta que pasa por diferentes ubicaciones, 
+el cruce en un punto específico podría combinar partes de ambas rutas para generar 
+una nueva.
+
+
+% ------------------------------------------------------------------------------------/
+% -----------------------------------------------------------------------------------/
+\subsubsection*{Mutación 05}
+% -------------------------------------------------------------------------------------/
+% ------------------------------------------------------------------------------------/
+
+Los nuevos descendientes pueden experimentar cambios aleatorios en sus rutas, simulando 
+la mutación genética. Esto introduce variabilidad en la población y evita la convergencia 
+prematura hacia una solución subóptima.
+
+
+% ------------------------------------------------------------------------------------/
+% -----------------------------------------------------------------------------------/
+\subsubsection*{Reemplazo 06}
+% -------------------------------------------------------------------------------------/
+% ------------------------------------------------------------------------------------/
+
+Los nuevos descendientes reemplazan a los individuos menos aptos en la población 
+existente. Esto ayuda a mantener la diversidad genética en la población y a explorar 
+diferentes soluciones potenciales.
+
+% ------------------------------------------------------------------------------------/
+% -----------------------------------------------------------------------------------/
+\subsubsection*{Criterio de Aptitud 07}
+% -------------------------------------------------------------------------------------/
+% ------------------------------------------------------------------------------------/
+
+Se repiten los pasos 2 a 6 durante varias generaciones hasta que se alcance algún 
+criterio de aptitud, como una solución que cumpla con los requisitos de entrega de paquetes
+(por ejemplo, la ruta más corta que visita todas las ubicaciones requeridas) o un número 
+máximo de generaciones.

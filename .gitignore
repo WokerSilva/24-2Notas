@@ -1,0 +1,14 @@
+## Ignorar ajustes de vscode
+.vscode
+
+InteligenciaArtificial/Notas/ia-guia.txt
+
+## Ignorar los archivos generados por la compilación de LaTex en la carpeta Inteligencia Artificial
+InteligenciaArtificial/Notas/main.aux
+InteligenciaArtificial/Notas/main.bbl
+InteligenciaArtificial/Notas/main.bcf
+InteligenciaArtificial/Notas/main.blg
+InteligenciaArtificial/Notas/main.log
+InteligenciaArtificial/Notas/main.out
+InteligenciaArtificial/Notas/main.run.xml
+InteligenciaArtificial/Notas/main.toc
